@@ -666,9 +666,10 @@ MonoBehaviour:
   playerSpeed: 0.2
   jumpVelocity: 7
   jumpCheck: 1
-  fallMultiplier: 2.5
-  lowJumpMultiplier: 2
+  fallMultiplier: 5
+  lowJumpMultiplier: 4
   playerRB: {fileID: 0}
+  jumpInputType: 1
 --- !u!212 &1166821974
 SpriteRenderer:
   m_ObjectHideFlags: 0

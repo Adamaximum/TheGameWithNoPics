@@ -17,6 +17,8 @@ public class PlayerControl : MonoBehaviour
 
     public Rigidbody2D playerRB;
 
+    public bool jumpInputType;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,21 @@ public class PlayerControl : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        MovementInput();
+
+        if (jumpInputType == false)
+        {
+            JumpInputV1();
+        }
+        else if (jumpInputType == true)
+        {
+            JumpInputV2();
+        }
+        
+    }
+
+    void MovementInput()
     {
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
@@ -40,16 +57,14 @@ public class PlayerControl : MonoBehaviour
         }
 
         transform.position += new Vector3(horizontalInput, 0, 0);
+    }
 
+    void JumpInputV1() //Using GetKeyDown
+    {
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && jumpCheck == true)
         {
             playerRB.velocity = Vector2.up * jumpVelocity;
         }
-
-        //if (Input.GetButtonDown("Jump") && jumpCheck == true)
-        //{
-        //    playerRB.velocity = Vector2.up * jumpVelocity;
-        //}
 
         //Control-Pressured Jumping
         if (playerRB.velocity.y < 0)
@@ -60,15 +75,24 @@ public class PlayerControl : MonoBehaviour
         {
             playerRB.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
+    }
 
-        //if (playerRB.velocity.y < 0)
-        //{
-        //    playerRB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-        //}
-        //else if (playerRB.velocity.y < 0 && !Input.GetButtonDown("Jump"))
-        //{
-        //    playerRB.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
-        //}
+    void JumpInputV2() //Using GetButtonDown
+    {
+        if (Input.GetButtonDown("Jump") && jumpCheck == true)
+        {
+            playerRB.velocity = Vector2.up * jumpVelocity;
+        }
+
+        //Control-Pressured Jumping
+        if (playerRB.velocity.y < 0)
+        {
+            playerRB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (playerRB.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            playerRB.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
