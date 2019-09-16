@@ -19,6 +19,9 @@ public class PlayerControl : MonoBehaviour
 
     public bool jumpInputType;
 
+    public Transform playerTR;
+    public Transform haveBreakTR;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +41,7 @@ public class PlayerControl : MonoBehaviour
         {
             JumpInputV2();
         }
-        
+        haveBreakTR.transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
     }
 
     void MovementInput()
