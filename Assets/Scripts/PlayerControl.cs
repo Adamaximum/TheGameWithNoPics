@@ -68,7 +68,7 @@ public class PlayerControl : MonoBehaviour
 
     void ShootInput()
     {
-        shootSpawn = transform.position.x + 0.4f;
+        shootSpawn = transform.position.x + 2.4f;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
