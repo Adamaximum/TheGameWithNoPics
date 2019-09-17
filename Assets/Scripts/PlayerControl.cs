@@ -19,13 +19,16 @@ public class PlayerControl : MonoBehaviour
 
     public bool jumpInputType;
 
-    public Transform playerTR;
-    public Transform haveBreakTR;
+    public float shootSpawn;
+    public Transform shootPointTR;
+    public GameObject breakShoot;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRB = gameObject.GetComponent<Rigidbody2D>();
+
+        shootPointTR = gameObject.GetComponentInChildren<Transform>();
     }
 
     // Update is called once per frame
@@ -41,7 +44,8 @@ public class PlayerControl : MonoBehaviour
         {
             JumpInputV2();
         }
-        haveBreakTR.transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
+
+        ShootInput();
     }
 
     void MovementInput()
@@ -60,6 +64,16 @@ public class PlayerControl : MonoBehaviour
         }
 
         transform.position += new Vector3(horizontalInput, 0, 0);
+    }
+
+    void ShootInput()
+    {
+        shootSpawn = transform.position.x + 0.4f;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(breakShoot, new Vector3(shootSpawn,transform.position.y,0f), Quaternion.identity);
+        }
     }
 
     void JumpInputV1() //Using GetKeyDown
