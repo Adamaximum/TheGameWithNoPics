@@ -19,6 +19,7 @@ public class PlayerControl : MonoBehaviour
 
     public bool jumpInputType;
 
+    public bool shootEnable;
     public float shootSpawn;
     public Transform shootPointTR;
     public GameObject breakShoot;
@@ -45,7 +46,10 @@ public class PlayerControl : MonoBehaviour
             JumpInputV2();
         }
 
-        ShootInput();
+        if (shootEnable == true)
+        {
+            ShootInput();
+        }
     }
 
     void MovementInput()
@@ -117,6 +121,12 @@ public class PlayerControl : MonoBehaviour
         if (collision.gameObject.tag == "Floor")
         {
             jumpCheck = true;
+        }
+
+        if (collision.gameObject.tag == "TakeBreak")
+        {
+            shootEnable = true;
+            Destroy(collision.gameObject);
         }
     }
 
