@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -127,6 +128,11 @@ public class PlayerControl : MonoBehaviour
         {
             shootEnable = true;
             Destroy(collision.gameObject);
+        }
+
+        if(collision.gameObject.tag == "Break")
+        {
+            SceneManager.LoadScene("SampleScene");
         }
     }
 
