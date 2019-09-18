@@ -25,6 +25,9 @@ public class PlayerControl : MonoBehaviour
     public Transform shootPointTR;
     public GameObject breakShoot;
 
+    public bool greener;
+    public GameObject greenShoot;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,6 +81,11 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(breakShoot, new Vector3(shootSpawn,transform.position.y,0f), Quaternion.identity);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            Instantiate(greenShoot, new Vector3(shootSpawn, transform.position.y, 0f), Quaternion.identity);
         }
     }
 

@@ -8,6 +8,8 @@ TagManager:
   - TakeBreak
   - Wall
   - Break
+  - ShootBreak
+  - ShootGreen
   layers:
   - Default
   - TransparentFX

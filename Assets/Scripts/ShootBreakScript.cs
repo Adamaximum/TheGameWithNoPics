@@ -22,12 +22,18 @@ public class ShootBreakScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Wall")
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Floor")
         {
-            Destroy(gameObject);
-            Destroy(collision.gameObject);
+            if(gameObject.tag == "ShootBreak")
+            {
+                Destroy(gameObject);
+                Destroy(collision.gameObject);
+            }
+            if(gameObject.tag == "ShootGreen")
+            {
+                Destroy(gameObject);
 
-            Debug.Log("Registered");
+            }
         }
     }
 }
